@@ -1,5 +1,5 @@
 {
-  "name": "nw-app",
+  "name": "tracking",
   "version": "1.0.0",
   "description": "",
   "main": "build/index.html",
@@ -8,16 +8,29 @@
   },
   "author": "",
   "window": {
+    "title": "tracking",
+    "icon": "icon.png",
     "toolbar": false,
+    "frame": false,
     "width": 800,
-    "height": 500
+    "height": 500,
+    "show": false
   },
   "license": "ISC",
   "dependencies": {
+    "angular": "^1.4.7",
+    "angular-animate": "^1.4.7",
+    "angular-route": "^1.4.7",
+    "angular-sanitize": "^1.4.7",
+    "angular-touch": "^1.4.7",
+    "angular-ui-bootstrap": "^0.13.4",
     "bootstrap": "^3.3.5",
-    "gulp": "^3.9.0",
-    "gulp-util": "^3.0.6",
     "del": "^2.0.0",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-util": "^3.0.6",
+    "gulp-webserver": "^0.9.1",
+    "jquery": "^2.1.4",
     "run-sequence": "^1.1.2"
   }
 }

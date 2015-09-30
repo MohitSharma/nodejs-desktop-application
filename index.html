@@ -1,24 +1,82 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="timeTracking">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Desktop Application</title>
+	<title>Complete Time Tracker</title>
 	<link rel="stylesheet" href="./css/styles.css">
 	<link rel="stylesheet" href="./css/bootstrap.min.css">
 </head>
 <body>
+    <header ng-controller="NavController">
+        <div class="app-header" style="-webkit-app-region: drag">
+            <span class="title" style="-webkit-app-region: drag">Complete Time Tracker</span>
+            <span class="header-btn exit pull-right" style="-webkit-app-region: no-drag" ng-click="closeWindow()">
+                <i class="glyphicon glyphicon-remove"></i>
+            </span>
+            <span class="header-btn minimize pull-right" style="-webkit-app-region: no-drag" ng-click="minimizeWindow()">
+                <i class="glyphicon glyphicon-minus"></i>
+            </span>
+            <span class="header-btn settings pull-right" style="-webkit-app-region: no-drag" ng-click="openSettings()">
+                <i class="glyphicon glyphicon-cog"></i>
+            </span>
+        </div>
 
-<div class="container">
-<form class="form">
-  <h2> Login To Application </h2>
-	<div class="form-group">
-		<input type="text" placeholder="Username" class="form-control"/>
-		<input type="password" placeholder="Password" class="form-control"/>
-  </div>
-  <button type="submit" class="btn btn-default">Login</button>
-</form>
-</div>
-<script src="./js/script.js"></script>
+        <div class="backdrop hidden"></div>
+        <div class="settings-window-container hidden">
+            <div class="window">
+                <div class="title">SETTINGS</div>
+                <div class="settings-form">
+                    <div class="field">
+                        <input type="checkbox" id="always-on-top">
+                        <span>Always on top</span>
+                    </div>
+                    <div class="field">
+                        <input type="checkbox" id="hide-seconds">
+                        <span>Hide seconds</span>
+                    </div>
+                    <div class="field">
+                        <input type="checkbox" id="stop-tasks-on-close">
+                        <span>Stop all tasks when closing</span>
+                    </div>
+                    <div class="field">
+                        <input type="checkbox" id="run-task-immediately">
+                        <span>Start running task when created</span>
+                    </div>
+                    <div class="field">
+                        <input type="checkbox" id="hide-done">
+                        <span>Hide tasks marked done</span>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <span class="btn btn-default" ng-click="closeSettings()">Cancel</span>
+                    <span class="btn btn-primary" ng-click="saveSettings()">Save</span>
+                </div>
+            </div>
+        </div>
+
+    </header>
+	<div class="container-fluid" ng-view>
+
+		<!-- AngularJS Template Here -->
+
+	</div>
+    <script src="./js/libs.js"></script>
+    <script src="./js/common/common.js"></script>
+    <script src="./js/common/winstate.js"></script>
+    <script src="./js/common/task.js"></script>
+    <script src="./js/common/user.js"></script>
+    <script src="./js/common/project.js"></script>
+	<script src="./js/app.js"></script>
+    <script src="./js/services/task-manager.js"></script>
+    <script src="./js/services/user-manager.js"></script>
+    <script src="./js/services/project-manager.js"></script>
+    <script src="./js/services/settings.js"></script>
+    <script src="./js/controllers/navbar.js"></script>
+    <script src="./js/controllers/home.js"></script>
+    <script src="./js/controllers/login.js"></script>
+    <script src="./js/controllers/adduser.js"></script>
+    <script src="./js/controllers/addproject.js"></script>
+    <script src="./js/script.js"></script>
 </body>
 </html>

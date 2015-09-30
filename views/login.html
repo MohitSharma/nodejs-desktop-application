@@ -1,0 +1,12 @@
+<form class="form" ng-submit="login()" name="loginForm" novalidate="true">
+    <h2> Login </h2>
+    <div class="form-group" ng-class="{ 'has-error' : loginForm.email.$invalid && loginForm.email.$touched }">
+        <input type="email" placeholder="Your Email" class="form-control" ng-model="user.email" required="" name="email" />
+        <p class="help-block" ng-show="loginForm.email.$invalid && loginForm.email.$touched">Enter a valid email.</p>
+    </div>
+    <div class="form-group" ng-class="{ 'has-error' : loginForm.password.$invalid && loginForm.password.$touched }">
+        <input type="password" placeholder="Password" class="form-control" ng-model="user.password" required="" name="password"/>
+        <p class="help-block" ng-show="loginForm.password.$invalid && loginForm.password.$touched">Please enter valid password.</p>
+    </div>
+    <button type="submit" class="btn btn-success col-xs-12">Login</button>
+</form>

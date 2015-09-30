@@ -1,0 +1,87 @@
+<tabset>
+    <tab heading="Users">
+        <h2>Users Management</h2>
+
+        <button type="button" class="btn btn-danger pull-right" ng-click="addUser()">Add User</button>
+
+        <table class="table table-bordered table-responsive">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="user in users">
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.role}}</td>
+                    <td><i class="glyphicon glyphicon-trash" ng-click="deleteUser(user.id)"></i></td>
+                </tr>
+            </tbody>
+        </table>
+    </tab>
+    <tab heading="Projects">
+        <h2>Projects Management</h2>
+
+        <button type="button" class="btn btn-danger pull-right" ng-click="addProject()">Add Project</button>
+
+        <table class="table table-bordered table-responsive">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Status</th>
+                <th>No of Tasks</th>
+                <th>Operation</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="project in projects">
+                <td>{{project.name}}</td>
+                <td>{{project.status}}</td>
+                <td></td>
+                <td><i class="glyphicon glyphicon-trash" ng-click="deleteProject(project.id)"></i></td>
+            </tr>
+            </tbody>
+        </table>
+    </tab>
+    <tab heading="Tasks">
+        <div class="create-task-container">
+                <span id="create-task" class="pull-right btn btn-primary btn-lg" ng-click="newTask()">
+                    <i class="glyphicon glyphicon-play"></i>
+                </span>
+            <div class="input-wrapper">
+                <input type="text" id="new-task" placeholder="Do..." />
+            </div>
+        </div>
+
+        <div class="all-tasks-container">
+            <div class="running-tasks-container">
+                <div class="running-task" ng-repeat="task in RunningTasks" data-task-id="task.id">
+			<span class="status" ng-click="toggleTaskStatus(task.id)">
+				<i class="glyphicon" ng-class="{'glyphicon-pause':task.running, 'glyphicon-play':!task.running}"></i>
+			</span>
+                    <span class="name" ng-bind-template="{{task.title}}"></span>
+                    <span class="seconds-elapsed pull-right" ng-if="!Settings.hideSeconds" ng-bind-template="{{':' + task.seconds}}"></span>
+                    <span class="time-elapsed pull-right" ng-bind-template="{{task.hours + ':' + task.minutes}}"></span>
+                    <span class="mark-as-done pull-right hidden" ng-click="markAsDone(task.id)">Done</span>
+                </div>
+            </div>
+            <div class="container-title" ng-if="!Settings.hideDoneTasks && DoneTasks.length > 0">
+                Done
+            </div>
+            <div class="done-tasks-container" ng-if="!Settings.hideDoneTasks">
+                <div class="done-task" ng-repeat="task in DoneTasks" data-task-id="task.id">
+                    <span class="strikethrough"></span>
+                    <span class="name" ng-bind-template="{{task.title}}"></span>
+                    <span class="time-elapsed pull-right" ng-bind-template="{{task.timeElapsed}}"></span>
+                        <span class="remove-task pull-right hidden" ng-click="removeTask(task.id)">
+                            <i class="glyphicon glyphicon-remove"></i>
+                        </span>
+                </div>
+            </div>
+        </div>
+    </tab>
+</tabset>

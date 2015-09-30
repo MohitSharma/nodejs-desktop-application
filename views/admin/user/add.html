@@ -1,0 +1,15 @@
+<div class="modal-header">
+    <h3 class="modal-title">Add User</h3>
+</div>
+<div class="modal-body">
+    <form class="form-inline" novalidate ng-submit="addUser()">
+        <div class="form-group">
+            <input class="form-control" type="text" name="name" placeholder="Full Name" ng-model="user.name"/>
+            <input class="form-control" type="email" name="email" placeholder="Email Address" ng-model="user.email"/>
+            <input class="form-control" type="password" name="password" placeholder="Password" ng-model="user.password"/>
+            <select class="form-control" ng-model="user.role" ng-options="item.key as item.label for item in roles track by item.key"></select>
+        </div>
+        <button type="submit" class="btn btn-danger">Add</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </form>
+</div>

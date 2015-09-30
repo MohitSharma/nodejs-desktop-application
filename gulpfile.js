@@ -1,7 +1,8 @@
 var gulp = require('gulp'),
-  gutil = require('gulp-util'),
+  concat = require('gulp-concat'),
   del = require('del'),
   runSequence = require('run-sequence'),
+  webserver = require('gulp-webserver'),
   src = {};
 
 // Clean output directory
@@ -13,10 +14,32 @@ gulp.task('html', function() {
       .pipe(gulp.dest('build'));
 });
 
+gulp.task('views', function() {
+    src.views = ['views/**/*', 'views/**/**/*'];
+    return gulp.src(src.views)
+        .pipe(gulp.dest('build/views'));
+});
+
 gulp.task('js', function() {
   src.js = ['js/**/*'];
   return gulp.src(src.js)
       .pipe(gulp.dest('build/js'));
+});
+
+
+gulp.task('libraries', function() {
+    src.libraries = [
+        'node_modules/jquery/dist/jquery.min.js',
+        'node_modules/angular/angular.js',
+        'node_modules/angular-animate/angular-animate.js',
+        'node_modules/angular-route/angular-route.js',
+        'node_modules/angular-sanitize/angular-sanitize.js',
+        'node_modules/angular-touch/angular-touch.js',
+        'node_modules/angular-ui-bootstrap/ui-bootstrap-tpls.min.js'
+    ];
+    return gulp.src(src.libraries)
+        .pipe(concat('libs.js'))
+        .pipe(gulp.dest('build/js'));
 });
 
 gulp.task('images', function() {
@@ -41,8 +64,9 @@ gulp.task('watch', function() {
   gulp.watch(src.js, ['js']);
   gulp.watch(src.css, ['css']);
   gulp.watch(src.html, ['html']);
+  gulp.watch(src.views, ['views']);
 });
 
 gulp.task('default', ['clean'], function(cb) {
-    runSequence(['html', 'js', 'css', 'fonts', 'images', 'watch'], cb);
+    runSequence(['html', 'views', 'libraries', 'js', 'css', 'fonts', 'images', 'watch'], cb);
 });

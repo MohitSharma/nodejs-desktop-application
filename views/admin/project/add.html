@@ -1,0 +1,13 @@
+<div class="modal-header">
+    <h3 class="modal-title">Add Project</h3>
+</div>
+<div class="modal-body">
+    <form class="form-inline" novalidate ng-submit="addProject()">
+        <div class="form-group">
+            <input class="form-control" type="text" name="name" placeholder="Full Name" ng-model="project.name"/>
+            <select class="form-control" ng-model="project.status" ng-options="item.key as item.label for item in statuses track by item.key"></select>
+        </div>
+        <button type="submit" class="btn btn-danger">Add</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </form>
+</div>
